@@ -1,7 +1,9 @@
 require_relative 'game_board_squares.rb'
+require_relative 'game_piece_abilities.rb'
 
 module Checkers
   include GameBoardSquares
+  include GamePieceAbilities
 
   class Player
     attr_accessor :player_name, :player_pieces
@@ -33,26 +35,8 @@ module Checkers
     attr_accessor :abilities
 
     def initialize(game_piece_type)
-      @abilities = pawn_abilities if game_piece_type == 'pawn'
-      @abilities = king_abilities if game_piece_type == 'king'
-    end
-
-    def pawn_abilities
-      {
-        diaganol_left_forward: true,
-        diaganol_left_backward: false,
-        diaganol_right_forward: true,
-        diaganol_right_backward: false,
-      }
-    end
-
-    def king_abilities
-      {
-        diaganol_left_forward: true,
-        diaganol_left_backward: true,
-        diaganol_right_forward: true,
-        diaganol_right_backward: true,
-      }
+      @abilities = Checkers::PAWN_ABILITIES if game_piece_type == 'pawn'
+      @abilities = Checkers::KING_ABILITIES if game_piece_type == 'king'
     end
   end
 
