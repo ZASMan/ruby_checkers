@@ -55,13 +55,21 @@ describe 'Board' do
   	)
   end
 
+  before do
+    player_one
+    player_two
+    game_board
+  end
+
   it 'creates an 8x8 square board' do
-  	player_one
-  	player_two
-  	game_board
   	# Height
   	expect(game_board.board_squares.length).to eq 8
   	# Width
-  	expect(game_board[1].length).to eq 8
+  	expect(game_board.board_squares[1].length).to eq 8
+  end
+
+  it 'places each players board pieces on the board' do
+    first_row_square = game_board.board_squares[1][:a]
+    expect(first_row_square.class.to_s).to eq 'GamePiece' 
   end
 end

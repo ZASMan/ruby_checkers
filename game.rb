@@ -65,6 +65,12 @@ module Checkers
     end
 
     def place_game_pieces(player_one_pieces, player_two_pieces)
+      @board_squares.each do |row|
+        row.each_with_index do |square, index|
+          square = player_one_pieces.last if index.even?
+          player_one_pieces.pop
+        end
+      end
     end
   end
 
@@ -76,3 +82,7 @@ module Checkers
     end
   end
 end
+
+player_one = Checkers::Player.new('Player One')
+player_two = Checkers::Player.new('Player Two')
+Checkers::Board.new(player_one.pieces, player_two.pieces)
