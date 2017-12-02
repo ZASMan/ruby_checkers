@@ -65,11 +65,31 @@ module Checkers
     end
 
     def place_game_pieces(player_one_pieces, player_two_pieces)
-      @board_squares.each do |row|
-        row.each_with_index do |square, index|
-          square = player_one_pieces.last if index.even?
-          player_one_pieces.pop
-        end
+      # Rows for Player One
+      [1,2,3,4].each do |row|
+        # First Row
+        @board_squares[row][:a] = player_one_pieces.last
+        player_one_pieces.pop
+        @board_squares[row][:c] = player_one_pieces.last
+        player_one_pieces.pop
+        @board_squares[row][:e] = player_one_pieces.last
+        player_one_pieces.pop
+        @board_squares[row][:g] = player_one_pieces.last
+        player_one_pieces.pop
+        @board_squares[row][:j] = player_one_pieces.last
+      end
+      # Rows for Player Two
+      [7, 8, 9, 10].each do |row|
+        # First Row
+        @board_squares[row][:a] = player_two_pieces.last
+        player_two_pieces.pop
+        @board_squares[row][:c] = player_two_pieces.last
+        player_two_pieces.pop
+        @board_squares[row][:e] = player_two_pieces.last
+        player_two_pieces.pop
+        @board_squares[row][:g] = player_two_pieces.last
+        player_two_pieces.pop
+        @board_squares[row][:j] = player_two_pieces.last
       end
     end
   end
@@ -83,6 +103,3 @@ module Checkers
   end
 end
 
-player_one = Checkers::Player.new('Player One')
-player_two = Checkers::Player.new('Player Two')
-Checkers::Board.new(player_one.pieces, player_two.pieces)

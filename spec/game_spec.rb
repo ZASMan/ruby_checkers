@@ -1,18 +1,26 @@
 require_relative '../game.rb'
+require 'Pry'
 
 describe 'Player' do
   let(:player) { Checkers::Player.new('andy') }
+
+  before do
+    player
+  end
+
   it 'can initialize a player with a name' do
-  	player
   	expect(player.player_name).to eq 'andy'
   end
 
   it 'initializes a player with all game pieces as pawns' do
-  	player
   	first_piece = player.player_pieces.first
   	expect(first_piece.type).to eq 'pawn'
     last_piece = player.player_pieces.last
     expect(last_piece.type).to eq 'pawn'
+  end
+
+  it 'initializes a player with 20 game pieces' do
+    expect(player.player_pieces.length).to eq 20
   end
 end
 
@@ -61,15 +69,17 @@ describe 'Board' do
     game_board
   end
 
-  it 'creates an 8x8 square board' do
+  it 'creates an 10x10 square board' do
   	# Height
-  	expect(game_board.board_squares.length).to eq 8
+  	expect(game_board.board_squares.length).to eq 10
   	# Width
-  	expect(game_board.board_squares[1].length).to eq 8
+  	expect(game_board.board_squares[1].length).to eq 10
   end
 
   it 'places each players board pieces on the board' do
     first_row_square = game_board.board_squares[1][:a]
-    expect(first_row_square.class.to_s).to eq 'GamePiece' 
+    expect(first_row_square.class).to eq Checkers::GamePiece
+    last_row_square = game_board.board_squares[10][:a]
+    expect(last_row_square.class).to eq Checkers::GamePiece
   end
 end
