@@ -15,7 +15,7 @@ module Checkers
 
     def create_pieces
       pieces = []
-      20.times do |piece|
+      20.times do |_piece|
         pieces << GamePiece.new('pawn')
       end
       pieces
@@ -50,7 +50,7 @@ module Checkers
 
     def place_game_pieces(player_one_pieces, player_two_pieces)
       # Rows for Player One
-      [1,2,3,4].each do |row|
+      [1, 2, 3, 4].each do |row|
         # First Row
         @board_squares[row][:a] = player_one_pieces.last
         player_one_pieces.pop
@@ -93,4 +93,3 @@ module Checkers
     end
   end
 end
-

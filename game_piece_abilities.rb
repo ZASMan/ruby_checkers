@@ -1,16 +1,15 @@
 module GamePieceAbilities
-
   PAWN_ABILITIES = {
     diaganol_left_forward: true,
     diaganol_left_backward: false,
     diaganol_right_forward: true,
-    diaganol_right_backward: false,
-  }
+    diaganol_right_backward: false
+  }.freeze
 
-  KING_ABILITIES =       {
+  KING_ABILITIES = {
     diaganol_left_forward: true,
     diaganol_left_backward: true,
     diaganol_right_forward: true,
-    diaganol_right_backward: true,
-  }
+    diaganol_right_backward: true
+  }.freeze
 end

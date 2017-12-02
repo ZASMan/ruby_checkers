@@ -9,12 +9,12 @@ describe 'Player' do
   end
 
   it 'can initialize a player with a name' do
-  	expect(player.player_name).to eq 'andy'
+    expect(player.player_name).to eq 'andy'
   end
 
   it 'initializes a player with all game pieces as pawns' do
-  	first_piece = player.player_pieces.first
-  	expect(first_piece.type).to eq 'pawn'
+    first_piece = player.player_pieces.first
+    expect(first_piece.type).to eq 'pawn'
     last_piece = player.player_pieces.last
     expect(last_piece.type).to eq 'pawn'
   end
@@ -31,7 +31,7 @@ describe 'GamePiece' do
       diaganol_left_forward: true,
       diaganol_left_backward: false,
       diaganol_right_forward: true,
-      diaganol_right_backward: false,
+      diaganol_right_backward: false
     }
   end
 
@@ -40,14 +40,14 @@ describe 'GamePiece' do
       diaganol_left_forward: true,
       diaganol_left_backward: true,
       diaganol_right_forward: true,
-      diaganol_right_backward: true,
+      diaganol_right_backward: true
     }
   end
 
   it 'creates a pawn piece with appropriate abilities' do
-  	pawn_piece
-  	expect(pawn_piece.moves.abilities[:diaganol_left_forward]).to eq true
-  	expect(pawn_piece.moves.abilities[:diaganol_right_forward]).to eq true
+    pawn_piece
+    expect(pawn_piece.moves.abilities[:diaganol_left_forward]).to eq true
+    expect(pawn_piece.moves.abilities[:diaganol_right_forward]).to eq true
     expect(pawn_piece.moves.abilities[:diaganol_left_backward]).to eq false
     expect(pawn_piece.moves.abilities[:diaganol_right_backward]).to eq false
   end
@@ -58,9 +58,9 @@ describe 'Board' do
   let(:player_two) { Checkers::Player.new('sid') }
   let(:game_board) do
     Checkers::Board.new(
-  	  player_one.player_pieces,
-  	  player_two.player_pieces
-  	)
+      player_one.player_pieces,
+      player_two.player_pieces
+    )
   end
 
   before do
@@ -70,10 +70,10 @@ describe 'Board' do
   end
 
   it 'creates an 10x10 square board' do
-  	# Height
-  	expect(game_board.board_squares.length).to eq 10
-  	# Width
-  	expect(game_board.board_squares[1].length).to eq 10
+    # Height
+    expect(game_board.board_squares.length).to eq 10
+    # Width
+    expect(game_board.board_squares[1].length).to eq 10
   end
 
   it 'places each players board pieces on the board' do
