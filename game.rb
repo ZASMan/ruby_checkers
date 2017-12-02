@@ -84,6 +84,13 @@ module Checkers
       @game_player_two = Player.new(player_two_name)
       @game_board = Board.new(@player_one.player_pieces, @player_two.player_pieces)
     end
+
+    def game_player_move(user_input)
+      # Should be format of
+      # piece on 1A square to 2B square
+      # Input: 1A, 2B
+      # Chop that input and update the board
+    end
   end
 end
 
