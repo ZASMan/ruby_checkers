@@ -98,15 +98,29 @@ module Checkers
 
     def game_player_move(user_input)
       user_input = gets.chomp
-      parse_player_move(user_input)
+      parsed_move = parse_player_move(user_input)
+      move_piece()
+    end
+
+    def move_piece(parsed_move)
+
     end
 
     def parse_player_move(user_input)
-      # Should be format of
-      # piece on 1A square to 2B square
-      # Input: 1A, 2B
-      # Chop that input and update the board
-      user_input.split(/\s*,\s*/)
+      # Format will be row, square, piece 
+      output = {
+        position_a: [],
+        position_b: []
+      }
+      user_input_aray = user_input.split(/\s*,\s*/)
+      row = user_input_array[0][0]
+      square = user_input_array[0][1]
+      piece = @game_board.board_squares[row][square]
+      output[position_a] = [row, square, piece]
+      row = user_input_array[1][0]
+      square = user_input_array[1][1]
+      piece = @game_board.board_squares[row][square]
+      output[position_b] = [row, square, piece]
     end
   end
 end

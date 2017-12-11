@@ -82,3 +82,31 @@ describe 'Board' do
     expect(last_row_square.class).to eq Checkers::GamePiece
   end
 end
+
+describe 'Game' do
+  context 'class methods' do
+    it 'displays the game board' do
+
+    end
+
+    it 'parses the user input' do
+
+    end
+
+    context 'pawn piece moves' do
+      it 'can move a pawn diaganol left forward' do
+
+      end
+
+      it 'can move a pawn diaganol right forward' do
+
+      end
+
+      it 'cannot move a pawn diaganol right backward' do
+
+      end
+
+      it 'cannot move a pawn diaganol left backward' do
+    end
+  end
+end
