@@ -85,8 +85,20 @@ module Checkers
       @game_board = Board.new(@player_one.player_pieces, @player_two.player_pieces)
     end
 
+    def display_game_board
+      # Should display a pattern of the board
+    end
+
+    def instruction_message
+      puts(
+        "Move should be input in the format" \
+        "of '1A, 1B'."
+      )
+    end
+
     def game_player_move(user_input)
       user_input = gets.chomp
+      parse_player_move(user_input)
     end
 
     def parse_player_move(user_input)
@@ -94,6 +106,7 @@ module Checkers
       # piece on 1A square to 2B square
       # Input: 1A, 2B
       # Chop that input and update the board
+      user_input.split(/\s*,\s*/)
     end
   end
 end
