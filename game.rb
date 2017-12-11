@@ -97,9 +97,10 @@ module Checkers
     end
 
     def game_player_move(user_input)
+      instruction_message
       user_input = gets.chomp
       parsed_move = parse_player_move(user_input)
-      move_piece()
+      move_piece(parsed_move)
     end
 
     def move_piece(parsed_move)
@@ -121,6 +122,7 @@ module Checkers
       square = user_input_array[1][1]
       piece = @game_board.board_squares[row][square]
       output[position_b] = [row, square, piece]
+      output
     end
   end
 end
