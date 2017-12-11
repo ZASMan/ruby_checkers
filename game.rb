@@ -86,6 +86,10 @@ module Checkers
     end
 
     def game_player_move(user_input)
+      user_input = gets.chomp
+    end
+
+    def parse_player_move(user_input)
       # Should be format of
       # piece on 1A square to 2B square
       # Input: 1A, 2B

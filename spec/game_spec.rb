@@ -1,5 +1,4 @@
 require_relative '../game.rb'
-require 'Pry'
 
 describe 'Player' do
   let(:player) { Checkers::Player.new('andy') }
