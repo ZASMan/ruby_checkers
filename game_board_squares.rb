@@ -121,4 +121,4 @@ module GameBoardSquares
       j: []
     }
   }.freeze
-  end
+end

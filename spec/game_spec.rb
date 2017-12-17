@@ -1,10 +1,15 @@
 require_relative '../game.rb'
+require 'pry'
 
 describe 'Player' do
-  let(:player) { Checkers::Player.new('andy') }
+  let(:player) { Checkers::Player.new('P1', 'andy') }
 
   before do
     player
+  end
+
+  it 'can initialize a player with player no' do
+    expect(player.player_no).to eq "P1"
   end
 
   it 'can initialize a player with a name' do
@@ -24,7 +29,14 @@ describe 'Player' do
 end
 
 describe 'GamePiece' do
-  let(:pawn_piece) { Checkers::GamePiece.new('pawn') }
+  let(:player) { Checkers::Player.new('P1', 'Jimmy') }
+  let(:pawn_piece) do
+    Checkers::GamePiece.new(
+      player.player_no,
+      'pawn'
+    )
+  end
+
   let(:pawn_abilities) do
     {
       diaganol_left_forward: true,
@@ -43,6 +55,11 @@ describe 'GamePiece' do
     }
   end
 
+  it 'creates a piece with a player no' do
+    pawn_piece
+    expect(pawn_piece.player_no).to eq player.player_no
+  end
+
   it 'creates a pawn piece with appropriate abilities' do
     pawn_piece
     expect(pawn_piece.moves.abilities[:diaganol_left_forward]).to eq true
@@ -53,8 +70,8 @@ describe 'GamePiece' do
 end
 
 describe 'Board' do
-  let(:player_one) { Checkers::Player.new('andy') }
-  let(:player_two) { Checkers::Player.new('sid') }
+  let(:player_one) { Checkers::Player.new('P1', 'andy') }
+  let(:player_two) { Checkers::Player.new('P2', 'sid') }
   let(:game_board) do
     Checkers::Board.new(
       player_one.player_pieces,
@@ -94,7 +111,7 @@ describe 'Game' do
   context 'class methods' do
     it 'displays the game board' do
       game
-      expect(game.display_game_board).to eq game.board_squares
+      expect(game.display_game_board).to eq game.board
     end
 
     it 'parses the user input' do

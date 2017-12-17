@@ -7,9 +7,10 @@ module Checkers
   include GamePieceAbilities
 
   class Player
-    attr_accessor :player_name, :player_pieces
+    attr_accessor :player_name, :player_pieces, :player_no
 
-    def initialize(player_name)
+    def initialize(player_no, player_name)
+      @player_no = player_no
       @player_name = player_name
       @player_pieces = create_pieces
     end
@@ -17,17 +18,18 @@ module Checkers
     def create_pieces
       pieces = []
       20.times do |_piece|
-        pieces << GamePiece.new('pawn')
+        pieces << GamePiece.new(player_no, 'pawn')
       end
       pieces
     end
   end
 
   class GamePiece
-    attr_accessor :type, :moves
+    attr_accessor :player_no, :type, :moves
 
-    def initialize(type)
-      @type = type
+    def initialize(player_no, type)
+      @player_no = player_no
+      @type = type  
       @moves = GamePieceAbility.new(type)
     end
   end
@@ -81,22 +83,39 @@ module Checkers
 
   class Game
     def initialize(player_one_name, player_two_name)
-      @game_player_one = Player.new(player_one_name)
-      @game_player_two = Player.new(player_two_name)
-      @game_board = Board.new(@game_player_one.player_pieces, @game_player_two.player_pieces)
+      @game_player_one = Player.new('P1', player_one_name)
+      @game_player_two = Player.new('P2', player_two_name)
+      @game_board = Board.new(
+        @game_player_one.player_pieces,
+        @game_player_two.player_pieces
+      )
     end
 
     def display_game_board
       # TODO:
       # Should display a pattern of the board
       # Need to display the type and maybe player on each board?
-      board_squares.each do |square|
-        print("|#{square.type}|")
+      board.each do |row_no, squares|
+        puts("")
+        puts("____________________________________________________________________________________")
+        %i[a b c d e f g h].each do |letter|
+          if squares[letter] == []
+            print("#{row_no}#{letter.capitalize}:|")
+            print(" ")
+            print("|")
+          else
+            print(
+              "#{row_no}#{letter.capitalize}:" \
+              "|#{squares[letter].player_no}(#{squares[letter].type[0]})"
+            )
+            print("|")
+          end
+        end
       end
-      board_squares
+      board
     end
 
-    def board_squares
+    def board
       @game_board.board_squares
     end
 
