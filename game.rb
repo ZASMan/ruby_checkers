@@ -29,7 +29,7 @@ module Checkers
 
     def initialize(player_no, type)
       @player_no = player_no
-      @type = type  
+      @type = type
       @moves = GamePieceAbility.new(type)
     end
   end
@@ -96,19 +96,19 @@ module Checkers
       # Should display a pattern of the board
       # Need to display the type and maybe player on each board?
       board.each do |row_no, squares|
-        puts("")
-        puts("____________________________________________________________________________________")
+        puts('')
+        puts('____________________________________________________________________________________')
         %i[a b c d e f g h].each do |letter|
           if squares[letter] == []
             print("#{row_no}#{letter.capitalize}:|")
-            print(" ")
-            print("|")
+            print(' ')
+            print('|')
           else
             print(
               "#{row_no}#{letter.capitalize}:" \
               "|#{squares[letter].player_no}(#{squares[letter].type[0]})"
             )
-            print("|")
+            print('|')
           end
         end
       end
@@ -121,24 +121,22 @@ module Checkers
 
     def instruction_message
       puts(
-        "Move should be input in the format" \
+        'Move should be input in the format' \
         "of '1A, 1B'."
       )
     end
 
-    def game_player_move(user_input)
+    def game_player_move(_user_input)
       instruction_message
       user_input = gets.chomp
       parsed_move = parse_player_move(user_input)
       move_piece(parsed_move)
     end
 
-    def move_piece(parsed_move)
-
-    end
+    def move_piece(parsed_move); end
 
     def parse_player_move(user_input)
-      # Format will be row, square, piece 
+      # Format will be row, square, piece
       output = {
         position_a: [],
         position_b: []
