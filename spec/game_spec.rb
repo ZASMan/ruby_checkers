@@ -84,9 +84,17 @@ describe 'Board' do
 end
 
 describe 'Game' do
+  let(:game) do
+    Checkers::Game.new(
+      "Newman",
+      "Jerry"
+    )
+  end
+
   context 'class methods' do
     it 'displays the game board' do
-
+      game
+      expect(game.display_game_board).to eq game.board_squares
     end
 
     it 'parses the user input' do
@@ -107,6 +115,7 @@ describe 'Game' do
       end
 
       it 'cannot move a pawn diaganol left backward' do
+      end
     end
   end
 end

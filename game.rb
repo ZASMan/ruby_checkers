@@ -1,5 +1,6 @@
 require_relative 'game_board_squares.rb'
 require_relative 'game_piece_abilities.rb'
+require 'pry'
 
 module Checkers
   include GameBoardSquares
@@ -79,14 +80,24 @@ module Checkers
   end
 
   class Game
-    def intialize(player_one_name, player_two_name)
+    def initialize(player_one_name, player_two_name)
       @game_player_one = Player.new(player_one_name)
       @game_player_two = Player.new(player_two_name)
-      @game_board = Board.new(@player_one.player_pieces, @player_two.player_pieces)
+      @game_board = Board.new(@game_player_one.player_pieces, @game_player_two.player_pieces)
     end
 
     def display_game_board
+      # TODO:
       # Should display a pattern of the board
+      # Need to display the type and maybe player on each board?
+      board_squares.each do |square|
+        print("|#{square.type}|")
+      end
+      board_squares
+    end
+
+    def board_squares
+      @game_board.board_squares
     end
 
     def instruction_message
