@@ -100,14 +100,14 @@ module Checkers
         puts('____________________________________________________________________________________')
         %i[a b c d e f g h].each do |letter|
           if squares[letter] == []
-            print("#{row_no}#{letter.capitalize}:|")
+            row_name = "#{row_no}#{letter.capitalize}:|"
+            print(row_name)
             print(' ')
             print('|')
           else
-            print(
-              "#{row_no}#{letter.capitalize}:" \
-              "|#{squares[letter].player_no}(#{squares[letter].type[0]})"
-            )
+            row_name = "#{row_no}#{letter.capitalize}:|"
+            row_piece = "#{squares[letter].player_no}(#{squares[letter].type[0]})"
+            print(row_name + row_piece)
             print('|')
           end
         end
